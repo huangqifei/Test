@@ -1,0 +1,5 @@
+package travel.struts.data;
+
+public class Reply {
+
+}
