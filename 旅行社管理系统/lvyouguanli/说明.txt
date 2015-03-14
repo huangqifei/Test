@@ -1,4 +1,5 @@
-软件使用My Eclipse7.5
-数据库使用MySQL5.1.36 用户名：root 密码：ROOT 链接名：travel 数据库名：travel
+软件使用 Eclipse7.5
+数据库使用MySQL5.1.36 用户名：root 密码：root 链接名：travel 数据库名：travel
 
 数据库没导出，表结构可参见pic中图片。
+
