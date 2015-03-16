@@ -18,7 +18,7 @@
 			联系电话：${user.telephone }<br/>
 			邮箱：${user.email }<br/>
 			<a href="modify_info.jsp">修改个人信息</a>
-			<a href="login.do">返回首页</a>
+			<a href="welcome.do">返回首页</a>
 			<li><font color="#3e44a1">预订酒店信息：</font></li><br/>
 			<table border="0" cellpadding="0" bordercolor="blue">
 				<c:choose>

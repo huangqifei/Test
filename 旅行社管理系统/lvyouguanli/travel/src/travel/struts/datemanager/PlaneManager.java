@@ -120,8 +120,9 @@ public class PlaneManager {
 	/**
 	 * 增加航班信息（管理员）
 	 * @param plane
+	 * @throws Exception 
 	 */
-	public void planeAdd(Plane plane) {
+	public void planeAdd(Plane plane) throws Exception {
 		DBOFactory.getInstance().getDBO().planeAdd(plane);
 	}
 	

@@ -20,6 +20,7 @@ public class PlaneAddAction extends Action {
 		Plane plane = new Plane();
 		BeanUtils.copyProperties(plane, form);
 		PlaneManager.getInstance().planeAdd(plane);
+		request.setAttribute("url", "/adminplanelink.do");
 		return mapping.findForward("success");
 	}
 }

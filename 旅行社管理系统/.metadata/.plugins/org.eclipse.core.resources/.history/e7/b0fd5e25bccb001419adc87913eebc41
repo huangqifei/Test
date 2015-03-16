@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+	<form-beans>
+		<form-bean name="userActionForm" type="travel.struts.actionforms.UserActionForm"/>
+		<form-bean name="hotelActionForm" type="travel.struts.actionforms.HotelActionForm"/>
+		<form-bean name="detailInfoActionForm" type="travel.struts.actionforms.DetailInfoActionForm"/>
+		<form-bean name="sightActionForm" type="travel.struts.actionforms.SightActionForm"/>
+		<form-bean name="planeActionForm" type="travel.struts.actionforms.PlaneActionForm"/>
+		<form-bean name="uploadPicActionForm" type="travel.struts.actionforms.UploadPicActionForm"/>
+		<form-bean name="bbsActionForm" type="travel.struts.actionforms.BBSActiomForm"/>
+	</form-beans>
+
+	<action-mappings>
+	
+		<action path="/welcome"
+				type="travel.struts.actions.WelcomeAction"
+				scope="request"
+		>
+			<forward name="success" path="/index.jsp"></forward>
+		</action>
+		
+		<action path="/login"
+				type="travel.struts.actions.LoginAction"
+				name="userActionForm"
+				scope="request"
+		>
+			<forward name="tourist" path="/index.jsp" />
+			<forward name="error" path="/error.jsp"/>
+		</action>
+		
+		<!-- 管理员登陆 -->
+		<action path="/adminlogin" 
+				type="travel.struts.actions.AdminLoginAction"
+				name="userActionForm"	
+				scope="request">
+				
+			<forward name="success" path="/admin_index.jsp"/>	
+			<forward name="error" path="/error.jsp"/>
+		</action>
+		
+		<action path="/add_hotelinfo"
+				type="travel.struts.actions.AddHotelInfoAction"
+				name="hotelActionForm"
+		>
+			<forward name="success" path="/addinfo_success.jsp" redirect="true"/>
+		</action>
+		
+		<action path="/indexsight"
+				type="travel.struts.actions.SightLinkAction"
+		>
+			<forward name="success" path="/sight_info.jsp"/>
+		</action>
+		
+		<action path="/indexcity"
+				type="travel.struts.actions.CityLinkAction"
+		>
+			<forward name="success" path="/city_sight.jsp"/>
+		</action>
+		
+		<action path="/indexhotel"
+				type="travel.struts.actions.HotelLinkAction"
+		>
+			<forward name="success" path="/hotel_info.jsp"/>
+		</action>
+		
+		<action path="/indexplane"
+				type="travel.struts.actions.PlaneLinkAction"
+		>
+			<forward name="success" path="/plane_info.jsp"/>
+		</action>
+		
+		<action path="/reservehotel"
+				type="travel.struts.actions.ReserveHotelAction"
+		>
+			<forward name="success" path="/fill_detailed_hotel.jsp"/>
+		</action>
+		
+		<action path="/reservegroup"
+				type="travel.struts.actions.ReserveGroupAction"
+		>
+			<forward name="success" path="/fill_detailed_group.jsp"/>
+		</action>
+		
+		<action path="/reserveplane"
+				type="travel.struts.actions.ReservePlaneAction"
+		>
+			<forward name="success" path="/fill_detailed_plane.jsp"/>
+		</action>
+		
+		<action path="/fillhotelinfo"
+				type="travel.struts.actions.FillDetailedHotelInformationAction"
+				name="hotelActionForm"
+				scope="request"
+		>
+			<forward name="success" path="/reserve_success.jsp" redirect="true"/>
+			<forward name="error" path="/reserve_error.jsp"/>
+			<forward name="login" path="/login.jsp" redirect="true"/>
+		</action>
+		
+		<action path="/fillgroupinfo"
+				type="travel.struts.actions.FillDetailedGroupInformationAction"
+				name="sightActionForm"
+		>
+			<forward name="success" path="/reserve_success.jsp" redirect="true"/>
+			<forward name="error" path="/reserve_error.jsp"/>
+			<forward name="login" path="/login.jsp"/>
+		</action>
+		
+		<action path="/fillplaneinfo"
+				type="travel.struts.actions.FillDetailedPlaneInfomationAction"
+				name="planeActionForm"
+		>
+			<forward name="success" path="/reserve_success.jsp"/>
+			<forward name="error" path="/reserve_error.jsp"/>
+			<forward name="login" path="/login.jsp"/>
+		</action>
+		
+		<action path="/logout"
+				type="travel.struts.actions.LogoutAction"
+		>
+			<forward name="success" path="/index.jsp"/>
+		</action>
+		
+		<action path="/groupinfo"
+				type="travel.struts.actions.GroupInfoAction"
+		>
+			<forward name="success" path="/group_info.jsp"/>
+		</action>
+		
+		<action path="/register"
+				type="travel.struts.actions.UserRegisterAction"
+				name="userActionForm"
+		>
+			<forward name="success" path="/success.jsp"/>
+			<forward name="error" path="/register_user.jsp"/>
+		</action>
+		
+		<action path="/logosight"
+				type="travel.struts.actions.LogoSightLinkAction"
+		>
+			<forward name="success" path="/sight.jsp"/>
+		</action>
+		
+		<action path="/logohotel"
+				type="travel.struts.actions.LogoHotelLinkAction"
+		>
+			<forward name="success" path="/hotel.jsp"/>
+		</action>
+		
+		<action path="/logoplane"
+				type="travel.struts.actions.LogoPlaneLinkAction"
+		>
+			<forward name="success" path="/plane.jsp"/>
+		</action>
+		
+		<action path="/querysight"
+				type="travel.struts.actions.QuerySightInfoAction"
+				name="sightActionForm"
+		>
+			<forward name="success" path="/sight.jsp"/>
+		</action>
+		
+		<action path="/queryhotel"
+				type="travel.struts.actions.QueryHotelInfoAction"
+				name="hotelActionForm"
+		>
+			<forward name="success" path="/hotel.jsp"/>
+		</action>
+		
+		<action path="/queryplane"
+				type="travel.struts.actions.QueryPlaneInfoAction"
+				name="planeActionForm"
+		>
+			<forward name="success" path="/plane.jsp"/>
+		</action>
+		
+		<action path="/modifyuserinfo"
+				type="travel.struts.actions.ModifyUserInfoAction"
+				name="userActionForm"
+		>
+			<forward name="success" path="/user_info.jsp"/>
+			<forward name="login" path="/login.jsp"/>
+		</action>
+		
+		<action path="/adminhotellink"
+				type="travel.struts.actions.AdminLogoHotelLinkAction"
+		>
+			<forward name="success" path="/admin_hotel.jsp"/>
+		</action>
+		
+		<action path="/adminsightlink"
+				type="travel.struts.actions.AdminLogoSightLinkAction"
+		>
+			<forward name="success" path="/admin_index.jsp"/>
+		</action>
+		
+		<action path="/adminplanelink"
+				type="travel.struts.actions.AdminLogoPlaneLinkAction"
+		>
+			<forward name="success" path="/admin_plane.jsp"/>
+		</action>
+		
+		<action path="/uploadpic"
+				type="travel.struts.actions.UploadPicAction"
+				name="uploadPicActionForm"
+		></action>
+		
+		<action path="/queryroomtype"
+				type="travel.struts.actions.QueryHotelAction"
+		>
+			<forward name="success" path="/fill_detailed_hotel.jsp"/>
+		</action>
+		
+		<action path="/confirm"
+				type="travel.struts.actions.ConfirmInfoAction"
+		>
+			<forward name="success" path="/user_info.jsp"/>	
+			<forward name="login" path="/login.jsp"/>	
+		</action>
+		
+		<action path="/adminsightmodify"
+				type="travel.struts.actions.AdminSightModifyAction"
+		>
+			<forward name="success" path="/adminsightmodify.jsp"/>	
+		</action>
+		
+		<action path="/modifysightensure"
+				type="travel.struts.actions.ModifySightEnsureAction"
+				name="sightActionForm"
+		>
+			<forward name="success" path="/modifysight_success.jsp" redirect="true"/>
+		</action>
+		
+		<action path="/adminsightdelete"
+				type="travel.struts.actions.AdminSightDeleteAction"
+		>
+			<forward name="success" path="/deletesight_success.jsp" redirect="true"/>
+		</action>
+		
+		<action path="/addsight"
+				type="travel.struts.actions.SightAddAction"
+				name="sightActionForm"
+		>
+			<forward name="success" path="/addsight_success.jsp" redirect="true"/>
+		</action>
+		
+		<action path="/adminsightdetail" type="travel.struts.actions.AdminSightDetailAction">
+			<forward name="success" path="/adminsightdetail.jsp"/>
+		</action>
+		
+		<action path="/adminhoteldetail"
+				type="travel.struts.actions.AdminHotelDetailAction"
+		>
+			<forward name="success" path="/adminhoteldetail.jsp"/>	
+		</action>
+		
+		<action path="/adminhotelmodify"
+				type="travel.struts.actions.AdminHotelModifyAction"
+		>
+			<forward name="success" path="/adminhotelmodify.jsp"/>	
+		</action>
+		
+		<action path="/modifyhotelensure"
+				type="travel.struts.actions.MofidyHotelEnsureAction"
+				name="hotelActionForm"
+		>
+			<forward name="success" path="/modifyhotel_success.jsp" redirect="true"/>
+		</action>
+		
+		<action path="/adminhoteldelete"
+				type="travel.struts.actions.AdminHotelDeleteAction"
+		>
+			<forward name="success" path="/modifyhotel_success.jsp" redirect="true"/>
+		</action>
+		
+		<action path="/addhotel"
+				type="travel.struts.actions.HotelAddAction"
+				name="hotelActionForm"
+		>
+			<forward name="success" path="/success.jsp" redirect="true"/>
+		</action>
+		
+		<action path="/adminlistroom"
+				type="travel.struts.actions.AdminListRoomAction"
+		>
+			<forward name="success" path="/admin_modifyroom.jsp"/>
+		</action>
+		
+		<action path="/modifyroomensure"
+				type="travel.struts.actions.ModifyRoomEnsureAction"
+				name="hotelActionForm"
+		>
+			<forward name="success" path="/admin_modifyroom.jsp"/>
+		</action>
+		
+		<action path="/roomdelete"
+				type="travel.struts.actions.RoomDeleteAction"
+		>
+			<forward name="success" path="/admin_modifyroom.jsp"/>
+		</action>
+		
+		<action path="/roomadd"
+				type="travel.struts.actions.AdminRoomAddAction"
+				name="hotelActionForm"
+		>
+			<forward name="success" path="/modifyhotel_success.jsp" redirect="true"/>
+		</action>
+		
+		<action path="/adminplanemodify"
+				type="travel.struts.actions.AdminPlaneModifyAction"
+		>
+			<forward name="success" path="/adminplanemodify.jsp"/>
+		</action>
+		
+		<action path="/modifyplaneensure"
+				type="travel.struts.actions.ModifyPlaneEnsureAction"
+				name="planeActionForm"
+		>
+			<!-- <forward name="success"  path="/modifyplane_success.jsp" redirect="true"/> -->
+			<forward name="success"  path="/success.jsp" redirect="true"/>
+		</action>
+		
+		<action path="/adminplanedelete"
+				type="travel.struts.actions.AdminPlaneDeleteAction"
+		>
+			<!-- <forward name="success" path="/modifyplane_success.jsp" redirect="true"/> -->
+			<forward name="success" path="/success.jsp" redirect="true"/>
+		</action>
+		
+		<action path="/addplane"
+				type="travel.struts.actions.PlaneAddAction"
+				name="planeActionForm"
+		>
+			<forward name="success" path="/success.jsp" redirect="true"/>
+		</action>
+		
+		<action path="/hotelcancelreserve"
+				type="travel.struts.actions.UserHotelCancelReservedAction"
+		>
+			<forward name="success" path="/cancelreserve_success.jsp"/>
+		</action>
+		
+		<action path="/groupcancelreserve"
+				type="travel.struts.actions.UserGroupCancelReservedAction"
+		>
+			<forward name="success" path="/cancelreserve_success.jsp"/>
+		</action>
+		
+		<action path="/planecancelreserve"
+				type="travel.struts.actions.UserPlaneCancelReservedAction"
+		>
+			<forward name="success" path="/cancelreserve_success.jsp"/>
+		</action>
+		
+		<action path="/logobbs"
+				type="travel.struts.actions.BBSListAction"
+		>
+			<forward name="success" path="/bbs.jsp"/>
+		</action>
+		
+		<action path="/seeposts"
+				type="travel.struts.actions.SeePostsAction"
+		>
+			<forward name="success" path="/post.jsp"/>
+		</action>
+		
+		<!-- 回帖 -->
+		<action path="/appearreply"
+				type="travel.struts.actions.BBSAppearReplyAction"
+				name="bbsActionForm"
+		>
+			<forward name="success" path="/reply_success.jsp" redirect="true"/>
+		</action>
+		
+		<!-- 发帖 -->
+		<action path="/apearpost"
+				type="travel.struts.actions.BBSAppearPostAction"
+				name="bbsActionForm"
+		>
+			<forward name="success" path="/post_success.jsp" redirect="true"/>
+		</action>
+		
+		<action path="/adminbbslogo"
+				type="travel.struts.actions.AdminBBSListAction"
+		>
+			<forward name="success" path="/admin_bbs.jsp"/>
+		</action>
+		
+		<action path="/adminseereply"
+				type="travel.struts.actions.AdminSeePostsAction"
+		>
+			<forward name="success" path="/admin_reply.jsp"/>
+		</action>
+		
+		<action path="/adminbbsdelete"
+				type="travel.struts.actions.AdminBBSDeleteAction"
+		>
+			<forward name="success" path="/admin_deletesuccess.jsp" redirect="true"/>
+		</action>
+		
+		<action path="/replydelete"
+				type="travel.struts.actions.AdminReplyDeleteAction"
+		>
+			<forward name="success" path="/admin_deletesuccess.jsp" redirect="true"/>
+		</action>
+		
+		<action path="/queryroomcost"
+				type="travel.struts.actions.QueryRoomCostAction"
+		>
+			<forward name="success" path="/fill_detailed_hotel.jsp"/>
+		</action>
+
+	</action-mappings>
+</struts-config>
+

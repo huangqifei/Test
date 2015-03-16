@@ -893,7 +893,7 @@ public class DateBaseOperator {
 	 * @return
 	 */
 	public Plane findPlaneById(int id) {
-		String sql = "select * from plane_info where id=?";
+		String sql = "select * from plane_info  where id=?";
 		Plane plane = new Plane();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -908,8 +908,8 @@ public class DateBaseOperator {
 				plane.setNumber(rs.getString("number"));
 				plane.setFromcity(rs.getString("fromcity"));
 				plane.setDestination(rs.getString("destination"));
-				plane.setFly_time(rs.getString("fly_time"));
-				plane.setArrive_time(rs.getString("arrive_time"));
+				plane.setFly_time(rs.getDate("fly_time").toString() +" "+ rs.getTime("fly_time").toString());
+				plane.setArrive_time(rs.getDate("arrive_time").toString() +" "+ rs.getTime("arrive_time").toString());
 				plane.setHaspeople(rs.getInt("haspeople"));
 				plane.setMaxpeople(rs.getInt("maxpeople"));
 				plane.setFee(rs.getInt("fee"));
@@ -1211,8 +1211,9 @@ public class DateBaseOperator {
 	/**
 	 * 增加航班信息（管理员）
 	 * @param plane
+	 * @throws Exception 
 	 */
-	public void planeAdd(Plane plane) {
+	public void planeAdd(Plane plane) throws Exception {
 		String sql = "insert into plane_info(number, fromcity, destination, fly_time, arrive_time, haspeople, maxpeople, fee) values(?, ?, ?, ?, ?, ?, ?, ?)";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -1230,6 +1231,7 @@ public class DateBaseOperator {
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new Exception("插入数据异常!");
 		} finally {
 			DB.closeStmt(pstmt);
 			DB.closeConn(conn);

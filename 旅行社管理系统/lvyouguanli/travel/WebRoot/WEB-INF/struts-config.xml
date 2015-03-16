@@ -250,9 +250,14 @@
 		</action>
 		
 		<action path="/adminsightdetail" type="travel.struts.actions.AdminSightDetailAction">
-			<forward name="success" path="/adminsightdetail.jsp"></forward> 
+			<forward name="success" path="/adminsightdetail.jsp"/>
 		</action>
 		
+		<action path="/adminhoteldetail"
+				type="travel.struts.actions.AdminHotelDetailAction"
+		>
+			<forward name="success" path="/adminhoteldetail.jsp"/>	
+		</action>
 		
 		<action path="/adminhotelmodify"
 				type="travel.struts.actions.AdminHotelModifyAction"
@@ -306,6 +311,11 @@
 			<forward name="success" path="/modifyhotel_success.jsp" redirect="true"/>
 		</action>
 		
+		
+		<action path="/adminplanedetail"
+				type="travel.struts.actions.AdminPlaneDetailAction"	>
+			<forward name="success" path="/adminplanedetail.jsp"/>
+		</action>
 		<action path="/adminplanemodify"
 				type="travel.struts.actions.AdminPlaneModifyAction"
 		>
@@ -316,20 +326,22 @@
 				type="travel.struts.actions.ModifyPlaneEnsureAction"
 				name="planeActionForm"
 		>
-			<forward name="success"  path="/modifyplane_success.jsp" redirect="true"/>
+			<!-- <forward name="success"  path="/modifyplane_success.jsp" redirect="true"/> -->
+			<forward name="success"  path="/success.jsp" redirect="true"/>
 		</action>
 		
 		<action path="/adminplanedelete"
 				type="travel.struts.actions.AdminPlaneDeleteAction"
 		>
-			<forward name="success" path="/modifyplane_success.jsp" redirect="true"/>
+			<!-- <forward name="success" path="/modifyplane_success.jsp" redirect="true"/> -->
+			<forward name="success" path="/success.jsp" redirect="true"/>
 		</action>
 		
 		<action path="/addplane"
 				type="travel.struts.actions.PlaneAddAction"
 				name="planeActionForm"
 		>
-			<forward name="success" path="/modifyplane_success.jsp" redirect="true"/>
+			<forward name="success" path="/success.jsp" redirect="true"/>
 		</action>
 		
 		<action path="/hotelcancelreserve"
